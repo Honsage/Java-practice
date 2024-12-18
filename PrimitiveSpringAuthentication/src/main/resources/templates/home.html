@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home</title>
 </head>
 <body>
-
+<h1>Добро пожаловать, <span
+        th:text="${username}">Пользователь</span></h1>
+<h2>Голосование</h2>
+<form th:action="@{/home}" method="post">
+    <input type="hidden" name="formType" value="vote" />
+    <p>Ваш любимый язык программирования:</p>
+    <label><input type="radio" name="option"
+                  value="Java" required /> Java</label><br/>
+    <label><input type="radio" name="option"
+                  value="Python" /> Python</label><br/>
+    <label><input type="radio" name="option" value="C++"
+    /> C++</label><br/>
+    <button type="submit">Голосовать</button>
+</form>
+<p th:if="${voteResult}" th:text="${voteResult}"></p>
 </body>
 </html>
