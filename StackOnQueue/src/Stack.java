@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 
-public class Stack<E> {
+public class Stack <E> {
     private final LinkedList<E> queue;
 
     public Stack() {
@@ -31,7 +31,9 @@ public class Stack<E> {
         StringBuilder s = new StringBuilder();
         int size = this.queue.size();
         for(int i = 0; i < size; ++i) {
-            s.append("'").append(this.pop().toString()).append("'").append(" ");
+            E current = this.pop();
+            s.append("'").append(current.toString()).append("'").append(" ");
+            this.queue.add(current);
         }
         return s.toString();
     }
