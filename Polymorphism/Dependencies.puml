@@ -1,0 +1,31 @@
+@startuml
+
+interface Comparable {
++compareTo()
+}
+
+abstract class Figure {
+-type: String
++getType()
+
++{abstract}getSquare()
++{abstract}getPerimeter()
+}
+
+class Circle {
+-radius: double
+}
+
+class Rectangle {
+-length: double
+-width: double
+}
+
+class Square {}
+
+Comparable <|.. Figure
+Figure <|-- Circle
+Figure <|-- Rectangle
+Rectangle <|-- Square
+
+@enduml
