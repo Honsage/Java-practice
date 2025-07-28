@@ -5,7 +5,8 @@ import java.util.stream.IntStream;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 //        synchronizedUse();
-        semaphoreUse();
+//        semaphoreUse();
+        fileReaderTest();
     }
 
     private static final Object state;
@@ -73,5 +74,10 @@ public class Main {
 
         th1.join();
         th2.join();
+    }
+
+    public static void fileReaderTest() {
+        ConcurrentFileReader fileReader = new ConcurrentFileReader(1 << 3);
+        System.out.println(fileReader.read("src/file.txt"));
     }
 }
