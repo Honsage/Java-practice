@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+
+    <bean id="classicalMusic"
+          class="ru.honsage.practice.ClassicalMusic">
+    </bean>
+    <bean id="rockMusic"
+          class="ru.honsage.practice.RockMusic">
+    </bean>
+    <bean id="phonkMusic"
+          class="ru.honsage.practice.PhonkMusic">
+    </bean>
+
+    <bean id="musicList" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="classicalMusic"/>
+                <ref bean="rockMusic"/>
+                <ref bean="phonkMusic"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="musicPlayer"
+          class="ru.honsage.practice.MusicPlayer">
+        <constructor-arg ref="musicList"/>
+        <property name="music" ref="classicalMusic"/>
+        <property name="name" value="Melody"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
+    </bean>
+</beans>
