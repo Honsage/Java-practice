@@ -10,13 +10,17 @@
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
 
     <bean id="classicalMusic"
-          class="ru.honsage.practice.ClassicalMusic">
+          class="ru.honsage.practice.ClassicalMusic"
+          scope="prototype">
     </bean>
     <bean id="rockMusic"
-          class="ru.honsage.practice.RockMusic">
+          class="ru.honsage.practice.RockMusic"
+          init-method="init"
+          destroy-method="destroy">
     </bean>
     <bean id="phonkMusic"
-          class="ru.honsage.practice.PhonkMusic">
+          class="ru.honsage.practice.PhonkMusic"
+          factory-method="getPhonkMusic">
     </bean>
 
     <bean id="musicList" class="java.util.ArrayList">
