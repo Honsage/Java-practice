@@ -7,37 +7,40 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+<!--    <context:property-placeholder location="classpath:musicPlayer.properties"/>-->
 
-    <bean id="classicalMusic"
-          class="ru.honsage.practice.ClassicalMusic"
-          scope="prototype">
-    </bean>
-    <bean id="rockMusic"
-          class="ru.honsage.practice.RockMusic"
-          init-method="init"
-          destroy-method="destroy">
-    </bean>
-    <bean id="phonkMusic"
-          class="ru.honsage.practice.PhonkMusic"
-          factory-method="getPhonkMusic">
-    </bean>
+<!--    <bean id="classicalMusic"-->
+<!--          class="ru.honsage.practice.ClassicalMusic"-->
+<!--          scope="prototype">-->
+<!--    </bean>-->
+<!--    <bean id="rockMusic"-->
+<!--          class="ru.honsage.practice.RockMusic"-->
+<!--          init-method="init"-->
+<!--          destroy-method="destroy">-->
+<!--    </bean>-->
+<!--    <bean id="phonkMusic"-->
+<!--          class="ru.honsage.practice.PhonkMusic"-->
+<!--          factory-method="getPhonkMusic">-->
+<!--    </bean>-->
 
-    <bean id="musicList" class="java.util.ArrayList">
-        <constructor-arg>
-            <list>
-                <ref bean="classicalMusic"/>
-                <ref bean="rockMusic"/>
-                <ref bean="phonkMusic"/>
-            </list>
-        </constructor-arg>
-    </bean>
+<!--    <bean id="musicList" class="java.util.ArrayList">-->
+<!--        <constructor-arg>-->
+<!--            <list>-->
+<!--                <ref bean="classicalMusic"/>-->
+<!--                <ref bean="rockMusic"/>-->
+<!--                <ref bean="phonkMusic"/>-->
+<!--            </list>-->
+<!--        </constructor-arg>-->
+<!--    </bean>-->
 
-    <bean id="musicPlayer"
-          class="ru.honsage.practice.MusicPlayer">
-        <constructor-arg ref="musicList"/>
-        <property name="music" ref="classicalMusic"/>
-        <property name="name" value="Melody"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
+<!--    <bean id="musicPlayer"-->
+<!--          class="ru.honsage.practice.MusicPlayer">-->
+<!--        <constructor-arg ref="musicList"/>-->
+<!--        <property name="music" ref="classicalMusic"/>-->
+<!--        <property name="name" value="Melody"/>-->
+<!--        <property name="volume" value="${musicPlayer.volume}"/>-->
+<!--    </bean>-->
+
+
+    <context:component-scan base-package="ru.honsage.practice"/>
 </beans>

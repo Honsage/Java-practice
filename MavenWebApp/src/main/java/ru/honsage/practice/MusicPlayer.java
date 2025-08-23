@@ -1,14 +1,26 @@
 package ru.honsage.practice;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
+@Component
 public class MusicPlayer {
     private List<Music> musicList;
+    @Value("Player")
     private String name;
+    @Value("75")
     private int volume;
 
     public MusicPlayer(List<Music> musicList) {
         this.musicList = musicList;
+    }
+
+    @Autowired
+    public MusicPlayer(JazzMusic music) {
+        this.musicList = List.of(music);
     }
 
     public void playMusic() {
