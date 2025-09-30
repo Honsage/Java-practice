@@ -15,13 +15,38 @@
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.10.2</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.17.0</version> <!-- Поддерживает Java 22 -->
+                <configuration>
+                    <targetClasses>
+                        <param>ru.honsage.practice.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>ru.honsage.practice.*</param>
+                    </targetTests>
+                    <outputFormats>
+                        <format>HTML</format>
+                    </outputFormats>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
