@@ -33,6 +33,17 @@ public class NumericFilterTest {
     }
 
     @Test
+    public void testEratosthenesBoundaryCondition() {
+        List<Boolean> result = NumericFilter.eratosthenesSieve(25);
+        Assert.assertFalse(result.get(25));
+        Assert.assertTrue(result.get(2));
+        Assert.assertTrue(result.get(3));
+        Assert.assertFalse(result.get(4));
+        Assert.assertTrue(result.get(5));
+        Assert.assertTrue(result.get(23));
+    }
+
+    @Test
     public void testFibonacciSmall() {
         List<Integer> expected = Arrays.asList(0, 1, 1);
         Assert.assertEquals(expected, NumericFilter.fibonacci(1));
@@ -42,6 +53,13 @@ public class NumericFilterTest {
     public void testFibonacciOrdinary() {
         List<Integer> expected = Arrays.asList(0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55);
         Assert.assertEquals(expected, NumericFilter.fibonacci(60));
+    }
+
+    @Test
+    public void testFilterFibonacciBoundaryCondition() throws Exception {
+        ArrayList<Integer> input = new ArrayList<>(Arrays.asList(8, 13, 21));
+        List<Integer> result = NumericFilter.filterFibonacci(input);
+        Assert.assertEquals(Arrays.asList(8, 13, 21), result);
     }
 
     @Test
