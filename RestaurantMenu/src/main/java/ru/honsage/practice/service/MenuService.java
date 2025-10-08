@@ -29,8 +29,8 @@ public class MenuService {
                 .collect(Collectors.toList());
     }
 
-    public Optional<Dish> getDishByName(String name) {
-        return this.dishes.stream().filter(dish -> dish.name() == name)
-                .findFirst();
+    public List<Dish> getDishByName(String name) {
+        return this.dishes.stream().filter(dish -> dish.name().toLowerCase().contains(name.toLowerCase()))
+                .collect(Collectors.toList());
     }
 }

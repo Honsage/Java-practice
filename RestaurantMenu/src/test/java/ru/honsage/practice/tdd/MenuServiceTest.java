@@ -34,27 +34,25 @@ public class MenuServiceTest {
     @Test
     public void testFilterByCategory() {
         List<Dish> result = this.menuService.filterByCategory("Напитки");
-
         assertThat(result).hasSize(2).containsExactly(coffee, juice);
     }
 
     @Test
     public void testGetByNameSuccess() {
-        Optional<Dish> result = this.menuService.getDishByName("Овсяная каша");
-        assertThat(result.isPresent()).isTrue();
-        assertThat(result.get()).isEqualTo(this.porridge);
+        List<Dish> result = this.menuService.getDishByName("Овсяная каша");
+        assertThat(result).hasSize(1).containsExactly(porridge);
+        assertThat(result.getFirst()).isEqualTo(this.porridge);
     }
 
     @Test
     public void testGetByNameFailed() {
-        Optional<Dish> result = this.menuService.getDishByName("Гречневая каша");
-        assertThat(result.isPresent()).isFalse();
+        List<Dish> result = this.menuService.getDishByName("Гречневая каша");
+        assertThat(result).isEmpty();
     }
 
     @Test
     public void testFilterByPriceRange() {
         List<Dish> result = this.menuService.filterByPriceRange(70, 130);
-
         assertThat(result).hasSize(3).containsExactly(fishSoup, coffee, juice);
     }
 }
