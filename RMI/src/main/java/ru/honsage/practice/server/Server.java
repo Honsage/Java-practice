@@ -1,4 +1,6 @@
-package ru.honsage.practice;
+package ru.honsage.practice.server;
+
+import ru.honsage.practice.QuadraticEquationsSolver;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -9,12 +11,12 @@ public class Server {
 
     public static void main(String[] args) {
         try {
-            HelloImplementer obj = new HelloImplementer();
+            QuadraticEquationSolverImpl solver = new QuadraticEquationSolverImpl();
 
-            Hello stub = (Hello) UnicastRemoteObject.exportObject(obj, 0);
-            Registry registry = LocateRegistry.getRegistry();
+            QuadraticEquationsSolver stub = (QuadraticEquationsSolver) UnicastRemoteObject.exportObject(solver, 0);
+            Registry registry = LocateRegistry.createRegistry(2005);
 
-            registry.bind("Hello", stub);
+            registry.rebind("QuadraticEquationSolver", stub);
             System.err.println("Server ready");
         } catch(Exception e) {
             System.out.println("Server exception: " + e.toString());
